@@ -1,0 +1,35 @@
+    <!-- Modal -->
+    <div class="modal fade" id="NewTask" tabindex="-1" role="dialog" aria-labelledby="NewTaskLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form action="{% url 'new-task' %}" method="post">
+              <div class="modal-header">
+                <h5 class="modal-title" id="NewTaskLabel">Cadastrando Nova Tarefa</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="hidden" name="user" value={{user_id}} required>
+                  <label for="addInputTitle">Título:</label>
+                  <input type="text" class="form-control" id="addInputTitle" name="title" placeholder="Fazer compras..." required>
+                </div>
+                <div class="form-group">
+                  <label for="addInputStatus">Status:</label>
+                  <select class="form-control" id="addInputStatus" name="status" required>
+                    {% for value, property in status_list %}
+                    <option value="{{ value }}">{{ property }}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+    
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>

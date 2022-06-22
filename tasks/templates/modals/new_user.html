@@ -1,0 +1,42 @@
+    <!-- Modal -->
+    <div class="modal fade" id="NewUser" tabindex="-1" role="dialog" aria-labelledby="NewUserLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form action="{% url 'new-user' %}" method="post">
+              <div class="modal-header">
+                <h5 class="modal-title" id="NewUserLabel">Cadastrando Nova Pessoa Usuária</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="addInputUsername">Nome para Login:</label>
+                  <input type="text" class="form-control" id="addInputUsername" name="username" placeholder="Nome de Usuário(a)" required>
+                </div>
+                <div class="form-group">
+                    <label for="addInputPassword">Senha para Login:</label>
+                    <input type="password" class="form-control" id="addInputPassword" name="password" placeholder="Senha" required>
+                </div>
+                <div class="form-group">
+                  <label for="addInputEmail">Email:</label>
+                  <input type="email" class="form-control" id="addInputEmail" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="addInputFirst">Primeiro Nome:</label>
+                    <input type="text" class="form-control" id="addInputFirst" name="first_name" placeholder="Primeiro Nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="addInputLast">Último Nome:</label>
+                    <input type="text" class="form-control" id="addInputLast" name="last_name" placeholder="Último nome" required>
+                </div>
+    
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Cadastrar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>

@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suas Tarefas!</title>
-</head>
-<body>
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Tarefas</title>
+{% endblock %}
+
+{% block content %}
     {% for task in tasks %}
     <p>
     {{ task }}
     </p>
     {% endfor %}
-</body>
-</html>
+    <p>
+        <a href="#" data-toggle="modal" data-target="#NewTask">
+            <button type="submit" class="btn btn-sm btn-primary mb-2">Nova Tarefa</button>
+        </a>
+    </p>
+
+{% include "modals/new_task.html" %}
+
+{% endblock %}
