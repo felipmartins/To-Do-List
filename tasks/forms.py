@@ -10,6 +10,12 @@ class TaskForm(forms.ModelForm):
                   "title",
                   "status"]
 
+class EditTaskForm(forms.ModelForm):
+
+    class Meta:
+        model = Task
+        fields = ["status"]
+
 class UserForm(forms.ModelForm):
 
     class Meta:

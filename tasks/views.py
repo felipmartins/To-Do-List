@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
-from .forms import UserForm, TaskForm
+from .forms import UserForm, TaskForm, EditTaskForm
 from django.contrib.auth.models import User
 
 @login_required
@@ -40,5 +40,22 @@ def new_task(request):
 
 @login_required
 def task_info(request, user_id: int, task_id: int):
+    user = get_object_or_404(User, id=user_id)
     task = get_object_or_404(Task, id=task_id)
-    return render(request, 'task_details.html', 'task-details')
+
+    context = {
+        'task': task,
+        'user': user,
+        'status_list': Task.status_list
+    }
+
+    return render(request, 'task_details.html', context)
+
+@login_required
+def edit_task(request, task_id: int):
+    form = EditTaskForm(request.POST)
+
+    if form.is_valid():
+        form.save(commit=True)
+
+    return redirect('home')

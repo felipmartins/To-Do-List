@@ -8,7 +8,7 @@
 {% block content %}
     {% for task in tasks %}
     <p>
-    {{ task }}
+    <a href="{% url 'task-details' user_id task.id %}">{{ task }}</a>
     </p>
     {% endfor %}
     <p>

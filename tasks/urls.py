@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from rest_framework.authtoken.views import obtain_auth_token
 from django.urls import path
-from .views import index, new_task, new_user
+from .views import index, new_task, new_user, task_info
 
 urlpatterns = [
     path('', index, name='home'),
@@ -11,4 +11,5 @@ urlpatterns = [
     path("api-token-auth/", obtain_auth_token, name="api_token_auth"),
     path("new-user/", new_user, name="new-user"),
     path("new-task/", new_task, name="new-task"),
+    path('task/<int:user_id>/<int:task_id>', task_info, name='task-details' )
 ]

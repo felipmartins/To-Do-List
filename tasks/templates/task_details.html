@@ -1,0 +1,26 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block title %}
+<title>Tarefa de {{ user.username }}</title>
+{% endblock %}
+
+{% block content %}
+<p>
+    Título da tarefa: {{ task.title }}
+</p>
+<p>
+    Criada em: {{ task.created_at }}
+</p>
+<p>
+    Última atualização de status: {{ task.updated_at }}
+</p>
+<p>
+    Tarefa criada por: {{ task.user }}
+</p>
+<a href="#" data-toggle="modal" data-target="#EditTask">
+    <button type="submit" class="btn btn-sm btn-primary mb-2">Editar Tarefa</button>
+</a>
+{% include "modals/edit_task.html" %}
+{% endblock %}
+
