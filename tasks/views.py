@@ -46,16 +46,24 @@ def task_info(request, user_id: int, task_id: int):
     context = {
         'task': task,
         'user': user,
-        'status_list': Task.status_list
+        'status_list': Task.status_list,
     }
 
     return render(request, 'task_details.html', context)
 
 @login_required
 def edit_task(request, task_id: int):
+    task = get_object_or_404(Task, id=task_id)
+
+    title = task.title
+    created_at = task.created_at
+    updated_at = task.updated_at
+    user = task.user
+
     form = EditTaskForm(request.POST)
 
     if form.is_valid():
-        form.save(commit=True)
+        task.status = form.cleaned_data['status']
+        task.save()
 
-    return redirect('home')
+    return redirect('task-details', user.id, task_id)

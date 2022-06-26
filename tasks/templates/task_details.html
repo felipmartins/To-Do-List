@@ -6,9 +6,17 @@
 {% endblock %}
 
 {% block content %}
+
 <p>
-    Título da tarefa: {{ task.title }}
+    Título da tarefa: {{ title }}
 </p>
+{% for key, value in status_list %}
+{% if task.status == key %}
+<p>
+    Status da tarefa: {{ value }} 
+</p>
+{% endif %}
+{% endfor %}
 <p>
     Criada em: {{ task.created_at }}
 </p>
@@ -20,6 +28,9 @@
 </p>
 <a href="#" data-toggle="modal" data-target="#EditTask">
     <button type="submit" class="btn btn-sm btn-primary mb-2">Editar Tarefa</button>
+</a>
+<a href="{% url 'home' %}">
+    <button type="submit" class="btn btn-sm btn-primary mb-2">Voltar para Tarefas</button>
 </a>
 {% include "modals/edit_task.html" %}
 {% endblock %}
