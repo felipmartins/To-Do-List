@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from rest_framework.authtoken.views import obtain_auth_token
 from django.urls import path
-from .views import edit_task, index, new_task, new_user, task_info
+from .views import edit_task, index, new_task, new_user, task_info, list_tasks
 
 urlpatterns = [
     path('', index, name='home'),
@@ -13,4 +13,5 @@ urlpatterns = [
     path("new-task/", new_task, name="new-task"),
     path('task/<int:user_id>/<int:task_id>', task_info, name='task-details' ),
     path('edit-task/<int:task_id>', edit_task, name='edit-task' ),
+    path('tasks/', list_tasks, name='list-tasks')
 ]

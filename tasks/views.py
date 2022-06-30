@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Task
+from django.http import JsonResponse
 from .forms import UserForm, TaskForm, EditTaskForm
 from django.contrib.auth.models import User
 
@@ -67,3 +68,15 @@ def edit_task(request, task_id: int):
         task.save()
 
     return redirect('task-details', user.id, task_id)
+
+def list_tasks(request):
+    out = {}
+    tasks = Task.objects.all()
+
+    for task in tasks:
+        out[task.title] = { 'user':task.user.username,
+                            'status':task.status,
+                            'created_at':task.created_at,
+                            'updated_at':task.updated_at}
+    
+    return JsonResponse(out)
