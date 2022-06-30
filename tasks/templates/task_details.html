@@ -8,7 +8,7 @@
 {% block content %}
 
 <p>
-    Título da tarefa: {{ title }}
+    Título da tarefa: {{ task.title }}
 </p>
 {% for key, value in status_list %}
 {% if task.status == key %}
