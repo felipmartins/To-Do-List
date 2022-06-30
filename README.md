@@ -6,10 +6,10 @@
 ## Siga os passos abaixo para que você consiga executar a aplicação
 ---
 
-1. Clone o repositório
+1. Clone o repositório e entre na pasta do projeto
 
 ```bash
-git clone https://github.com/felipmartins/To-Do-List.git
+git clone https://github.com/felipmartins/To-Do-List.git && cd To-Do-List
 ```
 
 2. Crie o ambiente virtual
