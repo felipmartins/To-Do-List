@@ -6,17 +6,49 @@
 {% endblock %}
 
 {% block content %}
-    {% for task in tasks %}
-    <p>
-    <a href="{% url 'task-details' user_id task.id %}">{{ task }}</a>
-    </p>
-    {% endfor %}
-    <p>
-        <a href="#" data-toggle="modal" data-target="#NewTask">
-            <button type="submit" class="btn btn-sm btn-primary mb-2">Nova Tarefa</button>
-        </a>
-    </p>
+    <div class="page-content page-container" id="page-content">
+        <div class="padding">
+            <div class="table-responsive">
+                <table class="table table-theme table-row v-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-muted" style="width:60px">Tarefas</th>
+                            <th class="text-muted"></th>
+                            <td></td>
+                            <th class="text-muted" ></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for task in tasks %}
+                        <tr class="v-middle">
+                            {% if task.status == 2 %}
+                            <td><a href="{% url 'task-details' user_id task.id %}" data-abc="true"><span class="badge badge-success text-uppercase">Finalizado</span></a>
+                            </td>
+                            {% elif task.status == 1 %}
+                            <td><a href="{% url 'task-details' user_id task.id %}" data-abc="true"><span class="badge badge-primary text-uppercase">Em andamento</span></a>
+                            </td>
+                            {% elif task.status == 0 %}
+                            <td><a href="{% url 'task-details' user_id task.id %}" data-abc="true"><span class="badge badge-warning text-uppercase">Pendente</span></a>
+                            </td>
+                            {% endif %}
+                            </td>
+                            <td>{{task.title}}</td>
+                            <td>{{task.user}}</td>
+                            <td></td>
+                        {% endfor %}
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" data-toggle="modal" data-target="#NewTask">
+                    <input type="submit" class="btn btn-sm btn-primary mb-2" value="Nova Tarefa">
+                </a>
+            </div>
+        </div>
+    </div>
+        
 
 {% include "modals/new_task.html" %}
 
 {% endblock %}
+
+

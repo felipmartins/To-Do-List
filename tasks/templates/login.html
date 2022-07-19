@@ -6,6 +6,9 @@
 {% endblock %}
 
 {% block content %}
+<div class="loginbox"> <img src="https://i.imgur.com/ZYzTdD0.png" class="avatar">
+    <h1>Faça seu Login ou Cadastro</h1>
+
     <form method="post" action="{% url 'auth-login' %}">
         {% csrf_token %}
         <p>
@@ -18,8 +21,9 @@
         </p>
         <input type="submit" value="Fazer Login">
         <a href="#" data-toggle="modal" data-target="#NewUser">
-            <button type="submit" class="btn btn-sm btn-primary mb-2">Fazer Cadastro</button>
+            <input type="submit" value="Fazer Cadastro">
         </a>
     </form>
+</div>
 {% include "modals/new_user.html" %}
 {% endblock %}
